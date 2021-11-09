@@ -2,9 +2,12 @@ package com.example.reto1.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,18 @@ public class Cliente {
 	private String segundoApellido;
 	
 	private String dni;
+	
+	private Contrato contrato;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CONTRATO", nullable = false)
+	public Contrato getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(Contrato contrato) {
+		this.contrato = contrato;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

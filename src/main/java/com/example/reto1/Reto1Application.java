@@ -1,5 +1,7 @@
 package com.example.reto1;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.reto1.entities.Cliente;
+import com.example.reto1.entities.Contrato;
 import com.example.reto1.services.ClienteServiceImpl;
 
 @SpringBootApplication
@@ -50,6 +53,22 @@ public class Reto1Application implements CommandLineRunner{
 //		Cliente modificacion = clienteSevice.searchById(id);
 //		modificacion.setNombre("Jose");
 //		clienteSevice.actualizar(modificacion);
+		
+		Contrato contrato1 = new Contrato();
+		contrato1.setFechaCaducidad(Date.valueOf(LocalDate.of(12, 11, 2021)));
+		contrato1.setFechaVigencia(Date.valueOf(LocalDate.of(11, 11, 2021)));
+		contrato1.setPrecio(20.0);
+		
+		List<Cliente> l = new ArrayList<>();
+		l.add(cliente1);
+		l.add(cliente2);
+		
+		contrato1.setListaAlumnos(l);
+		
+		clienteSevice.insertar(contrato1);
+		
+		// En mi caso no puedo quedarme hasta las 4:30, esto es lo que me ha dado tiempo hasta las 3:00
+		
 		
 		
 		
